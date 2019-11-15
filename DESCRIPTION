@@ -1,0 +1,11 @@
+Package: RevKnitr
+Type: Package
+Title: Create KnitR documents with incorporated Rev code
+Version: 1.0.0
+Date: 2019-11-15
+Author: April M. Wright and David W. Bapst
+Maintainer: April Wright <wright.aprilm@gmail.com>
+Depends: knitr
+Description: This is an additional engine meant to be used with the KnitR R Package. It allows users to generate markdown documents and websites using the Rev language. It also allows for interactive coding with Rev in the RStudio interface.
+License: GPL-3
+RoxygenNote: 6.1.1
