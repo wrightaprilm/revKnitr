@@ -120,9 +120,10 @@ eng_rb <- function(options) {
     # set prev_out artificially to 13
     prev_out <- 13
     #
-    if(dir.exists(options$rbHistoryDirPath) & options$refreshHistoryRB){
+    if(options$refreshHistoryRB == TRUE){
       # need to get rid of old history
-      unlink(options$rbHistoryDirPath, recursive = TRUE)
+      print("Refreshing history!")
+      unlink(rbCodePath, recursive = TRUE, force = TRUE)
     }
     # once old files are cleared (if they exist)
     # Set up history directories

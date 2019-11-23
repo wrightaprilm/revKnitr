@@ -19,7 +19,7 @@ knitr::knit_engines$set(rb = RevKnitr::eng_rb)
 
 When using RevBayes in a notebook, please put any variables you want to echo to the screen last in the markdown cell. See the below cell for an example:
 
-```{rb, knitr::knit_engines$set(rb = RevGadgets::eng_rb)}
+```{rb}
 example <- 1.0 
 example
 ```
@@ -48,6 +48,8 @@ RevBayes uses the function `readDiscreteCharacterData()` to load a data matrix t
 
 
 ```{rb}
+    setwd("~/Desktop/")
+    
     morpho <- readDiscreteCharacterData("data/Cinctans.nex")
     morpho
 ```
@@ -110,8 +112,7 @@ hist(draws)
 ```
 
 Now, we combine the branch lengths with a uniform prior on topology to make a tree. The uniform prior simply means no tree is more likely _a priori_ than any other. This can be easily changed, for example, to use a starting tree. We then specify MCMC moves on the topology, NNI and SPR. These moves propose new topologies. In this way, we propose and evaluate new sets of relationships. We perform these moves frequently because these parameters are really important. We will also move each of the branch lengths each iteration. The scale move scales the current branch legnth. Finally, we monitor the tree length. This is a quantity many biologists are interested in.
-    
-
+  
 ```{rb}
     
     phylogeny ~ dnUniformTopologyBranchLength(taxa, branchLengthDistribution=dnExponential(br_len_lambda))
@@ -121,7 +122,8 @@ Now, we combine the branch lengths with a uniform prior on topology to make a tr
     tree_length := phylogen.treeLength()
 ```
 
-Oh No! We have made a typo in an RB chunk! How can we fix our error? Erase the above block. Use the below code, and choose the downward-facing grey arrow to run it.
+
+Oh No! We have made a typo in an RB chunk! How can we fix our error? Erase the above block. Use the below code, and choose the green arrow to run it.
 
 
 ```{rb, refreshHistoryRB = TRUE}
@@ -261,7 +263,7 @@ The third monitor we will add to our analysis will print information to the scre
 Once we have set up our model, moves, and monitors, we can now create the workspace variable that defines our MCMC run. We do this using the `mcmc()` function that simply takes the three main analysis components as arguments.
 
 
-```{rb}
+```{rb }
     mymcmc = mcmc(mymodel, monitors, moves, nruns=2, combine="mixed")
 ```
 
